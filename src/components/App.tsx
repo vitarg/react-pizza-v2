@@ -3,6 +3,7 @@ import Index from "./header";
 import Categories from "./categories";
 import Sort from "./sort";
 import PizzaBlock from "./pizza-block";
+import "../scss/app.scss";
 
 const App = () => {
   return (
