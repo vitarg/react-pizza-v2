@@ -4,22 +4,35 @@ interface PizzaBlockProps {
   title: string;
   price: number;
   img: string;
+  sizes: number[];
+  types: number[];
 }
 
-const PizzaBlock: React.FC<PizzaBlockProps> = ({ title, price, img }) => {
+const PizzaBlock: React.FC<PizzaBlockProps> = ({
+  title,
+  price,
+  img,
+  sizes,
+  types,
+}) => {
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={img} alt="Pizza" />
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          <li className="active">тонкое</li>
-          <li>традиционное</li>
+          {types.map((item, index) => (
+            <li className={index === 0 ? "active" : ""}>
+              {item ? "Традиционнное" : "Тонкое"}
+            </li>
+          ))}
         </ul>
         <ul>
-          <li className="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {sizes.map((item, index) => (
+            <li key={index} className={index === 0 ? "active" : ""}>
+              {item} см.
+            </li>
+          ))}
         </ul>
       </div>
       <div className="pizza-block__bottom">

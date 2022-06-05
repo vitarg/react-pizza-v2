@@ -24,6 +24,8 @@ const App = () => {
                 title={item.title}
                 price={item.price}
                 img={item.imageUrl}
+                sizes={item.sizes}
+                types={item.types}
               />
             ))}
           </div>
