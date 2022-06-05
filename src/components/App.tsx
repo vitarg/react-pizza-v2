@@ -19,14 +19,7 @@ const App = () => {
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
             {pizzas.map((item) => (
-              <PizzaBlock
-                key={item.id}
-                title={item.title}
-                price={item.price}
-                img={item.imageUrl}
-                sizes={item.sizes}
-                types={item.types}
-              />
+              <PizzaBlock key={item.id} {...item} />
             ))}
           </div>
         </div>

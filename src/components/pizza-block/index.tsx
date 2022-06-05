@@ -3,7 +3,7 @@ import React from "react";
 interface PizzaBlockProps {
   title: string;
   price: number;
-  img: string;
+  imageUrl: string;
   sizes: number[];
   types: number[];
 }
@@ -11,19 +11,20 @@ interface PizzaBlockProps {
 const PizzaBlock: React.FC<PizzaBlockProps> = ({
   title,
   price,
-  img,
+  imageUrl,
   sizes,
   types,
 }) => {
+  const typeNames = ["Тонкое", "Традиционное"];
   return (
     <div className="pizza-block">
-      <img className="pizza-block__image" src={img} alt="Pizza" />
+      <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
           {types.map((item, index) => (
-            <li className={index === 0 ? "active" : ""}>
-              {item ? "Традиционнное" : "Тонкое"}
+            <li key={item} className={index === 0 ? "active" : ""}>
+              {typeNames[item]}
             </li>
           ))}
         </ul>
