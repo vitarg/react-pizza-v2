@@ -1,20 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface PizzaBlockProps {
   title: string;
   price: number;
+  img: string;
 }
 
-const PizzaBlock: React.FC<PizzaBlockProps> = ({ title, price }) => {
-  const [amount, setAmount] = useState<number>(0);
-
+const PizzaBlock: React.FC<PizzaBlockProps> = ({ title, price, img }) => {
   return (
     <div className="pizza-block">
-      <img
-        className="pizza-block__image"
-        src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-        alt="Pizza"
-      />
+      <img className="pizza-block__image" src={img} alt="Pizza" />
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
@@ -29,10 +24,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ title, price }) => {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <button
-          className="button button--outline button--add"
-          onClick={() => setAmount((prev) => prev + 1)}
-        >
+        <button className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -46,7 +38,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ title, price }) => {
             />
           </svg>
           <span>Добавить</span>
-          <i>{amount}</i>
+          <i>0</i>
         </button>
       </div>
     </div>
