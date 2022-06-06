@@ -4,6 +4,7 @@ import Categories from "./categories";
 import Sort from "./sort";
 import PizzaBlock from "./pizza-block";
 import "../scss/app.scss";
+import Skeleton from "./pizza-block/Skeleton";
 
 interface Pizza {
   id: number;
@@ -18,10 +19,15 @@ interface Pizza {
 
 const App = () => {
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    setLoading(true);
     fetch("https://619116e741928b001768ff38.mockapi.io/pizzas").then(
-      (response) => response.json().then(setPizzas)
+      (response) => {
+        setLoading(false);
+        return response.json().then(setPizzas);
+      }
     );
   }, []);
 
@@ -36,9 +42,9 @@ const App = () => {
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
-            {pizzas.map((item) => (
-              <PizzaBlock key={item.id} {...item} />
-            ))}
+            {loading
+              ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
+              : pizzas.map((item) => <PizzaBlock key={item.id} {...item} />)}
           </div>
         </div>
       </div>
